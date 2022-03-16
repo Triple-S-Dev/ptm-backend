@@ -1,9 +1,9 @@
-const Activity = require('./activity')
-const Event = require('./event')
+const Activity = require('./activity');
+const Event = require('./event');
 
 const models = {
   Activity,
-  Event
-}
+  Event,
+};
 
-module.exports = models
+module.exports = models;

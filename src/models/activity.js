@@ -1,27 +1,28 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const activityPhoto = new mongoose.Schema(
-  {
+const activityPhoto = new mongoose.Schema({
   imageUrl: {
     type: String,
-    required: true
-  }
-}
-)
+    reuired: true,
+  },
+});
 
 const activitySchema = new mongoose.Schema(
   {
     activityPhoto: {
       type: [activityPhoto],
-      required: true
+      reuired: true,
     },
     activityDescription: {
       type: String,
-      required: true
-    }
+      reuired: true,
+    },
+  },
+  {
+    timestamps: true,
   }
-)
+);
 
-const Activity = mongoose.model('Activity', activitySchema)
+const Activity = mongoose.model('Activity', activitySchema);
 
-module.exports = Activity
+module.exports = Activity;
