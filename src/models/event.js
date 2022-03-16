@@ -1,41 +1,51 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
+const eventImageInput = new mongoose.Schema({
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+});
 
 const eventSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true
+      reuired: true,
     },
     description: {
       type: String,
-      required: true
+      reuired: true,
     },
     date: {
       type: String,
-      required: true
+      reuired: true,
     },
     locationArea: {
       type: String,
-      required: true
+      reuired: true,
     },
     participant: {
-      type: String,
-      required: true
+      type: Number,
+      reuired: true,
+      default: 0,
     },
     image: {
-      type: String,
-      required: true
+      type: [eventImageInput],
+      reuired: true,
     },
     activities: {
-      type: String,
-      required: true
-    }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Activity',
+      reuired: true,
+      default: null,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
-)
+);
 
-const Event = mongoose.model('Event', eventSchema)
+const Event = mongoose.model('Event', eventSchema);
 
-module.exports = Event
+module.exports = Event;
