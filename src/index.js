@@ -20,10 +20,6 @@ const DB_HOST = process.env.DB_HOST;
 // connect to mongodb database
 db.connect(DB_HOST);
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 // Set the GraphQL Playground
 async function apolloServer(typeDefs, resolvers) {
   const server = new ApolloServer({
@@ -49,6 +45,10 @@ Hello Backend
 );
 
 apolloServer(typeDefs, resolvers);
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.listen(4000, () =>
   console.log(`Server is running at http://localhost:${port}`)
 );
