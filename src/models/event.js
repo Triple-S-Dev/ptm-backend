@@ -1,13 +1,6 @@
 const mongoose = require('mongoose');
 
-const eventImageInput = new mongoose.Schema({
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-});
-
-const eventSchema = new mongoose.Schema(
+const EventSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -30,22 +23,27 @@ const eventSchema = new mongoose.Schema(
       reuired: true,
       default: 0,
     },
-    image: {
-      type: [eventImageInput],
-      reuired: true,
-    },
-    activities: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Activity',
-      reuired: true,
-      default: null,
-    },
+    image: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'EventImage',
+        reuired: true,
+      },
+    ],
+    activities: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Activity',
+        reuired: true,
+        default: null,
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const Event = mongoose.model('Event', eventSchema);
+const Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event;

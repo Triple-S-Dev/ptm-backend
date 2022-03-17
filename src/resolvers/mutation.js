@@ -1,3 +1,5 @@
+const { default: mongoose } = require('mongoose');
+
 module.exports = {
   createEvent: async (parent, args, { models }) => {
     return await models.Event.create({
@@ -5,9 +7,9 @@ module.exports = {
       description: args.description,
       date: args.date,
       locationArea: args.locationArea,
-      participant: args.participant,
+      participant: 0,
       image: args.image,
-      activities: args.activities,
+      activities: mongoose.Types.ObjectId(args.activities),
     });
   },
   deleteEvent: async (parent, { id }, { models }) => {

@@ -1,18 +1,14 @@
 const mongoose = require('mongoose');
 
-const activityPhoto = new mongoose.Schema({
-  imageUrl: {
-    type: String,
-    reuired: true,
-  },
-});
-
-const activitySchema = new mongoose.Schema(
+const ActivitySchema = new mongoose.Schema(
   {
-    activityPhoto: {
-      type: [activityPhoto],
-      reuired: true,
-    },
+    activityPhoto: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ActivityPhoto',
+        reuired: true,
+      },
+    ],
     activityDescription: {
       type: String,
       reuired: true,
@@ -23,6 +19,6 @@ const activitySchema = new mongoose.Schema(
   }
 );
 
-const Activity = mongoose.model('Activity', activitySchema);
+const Activity = mongoose.model('Activity', ActivitySchema);
 
 module.exports = Activity;
